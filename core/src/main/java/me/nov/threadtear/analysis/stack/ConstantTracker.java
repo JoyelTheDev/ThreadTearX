@@ -26,13 +26,13 @@ public class ConstantTracker extends Interpreter<ConstantValue> implements Opcod
   private IConstantReferenceHandler referenceHandler;
 
   public ConstantTracker(IConstantReferenceHandler referenceHandler) {
-    super(ASM8);
+    super(ASM9);
     this.referenceHandler = referenceHandler;
   }
 
   public ConstantTracker(IConstantReferenceHandler referenceHandler, boolean isStatic, int localVariables, String descr,
                          Object[] args) {
-    super(ASM8);
+    super(ASM9);
     this.referenceHandler = referenceHandler;
     this.desc = Type.getArgumentTypes(descr);
     ArrayList<Object> reformatted = new ArrayList<>();
