@@ -29,8 +29,7 @@ public class ThreadtearCore {
     LogWrapper.logger.info("Threadtear version {}", CoreUtils.getVersion());
     LogWrapper.logger.info("Executing {} tasks on {} classes!", executions.size(), classes.size());
     if (!disableSecurity) {
-      LogWrapper.logger.info("Initializing security manager if something goes horribly wrong");
-      System.setSecurityManager(null);
+      LogWrapper.logger.info("SecurityManager has been removed in Java 17+ and is no longer configured.");
     } else {
       LogWrapper.logger.warning("Starting without security manager!");
     }
@@ -60,7 +59,6 @@ public class ThreadtearCore {
     } catch (InterruptedException e1) {
     }
     LogWrapper.logger.info("Successful completion!");
-    System.setSecurityManager(null);
   }
 
   // TODO: make a CLI
