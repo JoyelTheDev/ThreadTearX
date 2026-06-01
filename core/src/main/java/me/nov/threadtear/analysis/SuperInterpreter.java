@@ -5,7 +5,7 @@ import org.objectweb.asm.tree.analysis.*;
 
 public class SuperInterpreter extends BasicInterpreter {
   public SuperInterpreter() {
-    super(ASM8);
+    super(ASM9);
   }
 
   @Override
