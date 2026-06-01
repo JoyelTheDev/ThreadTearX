@@ -17,11 +17,6 @@ public class CoreUtils {
     }
   }
 
-  public static boolean isNoverify() {
-    RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
-    List<String> arguments = runtimeMxBean.getInputArguments();
-    return arguments.contains("-Xverify:none");
-  }
 
   public static boolean isAttachable() {
     try {
