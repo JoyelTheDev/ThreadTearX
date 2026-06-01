@@ -9,7 +9,6 @@ import org.objectweb.asm.tree.analysis.*;
 
 import me.nov.threadtear.analysis.stack.*;
 import me.nov.threadtear.logging.LogWrapper;
-import me.nov.threadtear.security.VMSecurityManager;
 import me.nov.threadtear.util.asm.Access;
 
 public abstract class Execution implements Opcodes {
