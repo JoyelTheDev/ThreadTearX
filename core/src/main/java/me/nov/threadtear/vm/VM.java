@@ -43,7 +43,6 @@ public class VM extends ClassLoader implements Opcodes {
       throw new RuntimeException("class " + name + " is already defined");
     if (isForbiddenName(name))
       throw new RuntimeException(name + " is not an allowed class name");
-    }
     try {
       Class<?> c = defineClass(name, bytes, 0, bytes.length);
       resolveClass(c);
