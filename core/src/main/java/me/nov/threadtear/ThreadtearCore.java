@@ -3,7 +3,6 @@ package me.nov.threadtear;
 import me.nov.threadtear.execution.Clazz;
 import me.nov.threadtear.execution.Execution;
 import me.nov.threadtear.logging.LogWrapper;
-import me.nov.threadtear.security.VMSecurityManager;
 import org.slf4j.LoggerFactory;
 
 import java.lang.management.ManagementFactory;
