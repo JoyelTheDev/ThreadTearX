@@ -13,8 +13,7 @@ public class JSRInliner extends Execution {
 
   public JSRInliner() {
     super(ExecutionCategory.GENERIC, "JSR opcode inliner",
-      "Inlines JSR opcodes", ExecutionTag.POSSIBLE_VERIFY_ERR,
-      ExecutionTag.BETTER_DECOMPILE);
+      "Inlines JSR opcodes", ExecutionTag.BETTER_DECOMPILE);
   }
 
   @Override
