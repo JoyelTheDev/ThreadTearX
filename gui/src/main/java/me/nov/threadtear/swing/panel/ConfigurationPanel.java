@@ -142,12 +142,6 @@ public class ConfigurationPanel extends JPanel {
     run.setEnabled(false);
     run.addActionListener(l -> {
       run.setEnabled(false);
-      if (!CoreUtils.isNoverify()) {
-        JOptionPane.showMessageDialog(main,
-          "<html>You started without \"-noverify\". Some deobfuscators could fail" +
-            ".<br>Use \"<tt>java -noverify -jar ...</tt>\" to start the application.", "Warning",
-          JOptionPane.WARNING_MESSAGE);
-      }
       main.run(verbose.isSelected(), disableSecurity.isSelected());
     });
     panel.add(run);
