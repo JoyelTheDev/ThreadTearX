@@ -2,7 +2,7 @@ name: Build and Release
 
 on:
   push:
-     branches:
+    branches:
       - master
     tags:
       - 'v*.*.*'          # triggers on tags like v3.0.1, v4.0.0, etc.
