@@ -46,14 +46,6 @@ public class ThreadtearCore {
       ".com/GraxCode/threadtear/issues");
     RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
     List<String> arguments = runtimeMxBean.getInputArguments();
-    if (!CoreUtils.isNoverify()) {
-      LogWrapper.logger.warning("You started threadtear without -noverify, this results in less decryption! Your VM " +
-        "args: {}", arguments);
-      try {
-        Thread.sleep(2000);
-      } catch (InterruptedException e1) {
-      }
-    }
     executions.forEach(e -> {
       long ms = System.currentTimeMillis();
       LogWrapper.logger.info("Executing " + e.getClass().getName());
