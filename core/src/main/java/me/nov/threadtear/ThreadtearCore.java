@@ -31,7 +31,7 @@ public class ThreadtearCore {
     LogWrapper.logger.info("Executing {} tasks on {} classes!", executions.size(), classes.size());
     if (!disableSecurity) {
       LogWrapper.logger.info("Initializing security manager if something goes horribly wrong");
-      System.setSecurityManager(new VMSecurityManager());
+      System.setSecurityManager(null);
     } else {
       LogWrapper.logger.warning("Starting without security manager!");
     }
