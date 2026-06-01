@@ -166,7 +166,7 @@ public class AccessObfuscationZKM extends Execution implements IVMReferenceHandl
       try {
         int invokedynamicParams = Type.getArgumentTypes(Type.getMethodDescriptor(bootstrap)).length - 4;
         List<Object> args = new ArrayList<>(Arrays.asList(
-          DynamicReflection.getTrustedLookup(), null /* MutableCallSite, unused in method */,
+          DynamicReflection.getTrustedLookup(proxyClass), null /* MutableCallSite, unused in method */,
           idin.name, MethodType.fromMethodDescriptorString(idin.desc, vm)
         ));
         for (int i = 0; i < invokedynamicParams; i++) {
