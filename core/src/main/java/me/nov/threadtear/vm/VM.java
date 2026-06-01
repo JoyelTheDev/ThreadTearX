@@ -9,7 +9,6 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.InsnNode;
 
-import java.lang.reflect.Method;
 import java.security.ProtectionDomain;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,15 +43,6 @@ public class VM extends ClassLoader implements Opcodes {
       throw new RuntimeException("class " + name + " is already defined");
     if (isForbiddenName(name))
       throw new RuntimeException(name + " is not an allowed class name");
-    try {
-      Method define = ClassLoader.class
-        .getDeclaredMethod("defineClass0", String.class, byte[].class, int.class, int.class,
-          ProtectionDomain.class);
-      define.setAccessible(true);
-      Class<?> c = (Class<?>) define.invoke(this, name, bytes, 0, bytes.length, null);
-      resolveClass(c);
-      return c;
-    } catch (Exception e) {
     }
     try {
       Class<?> c = defineClass(name, bytes, 0, bytes.length);
