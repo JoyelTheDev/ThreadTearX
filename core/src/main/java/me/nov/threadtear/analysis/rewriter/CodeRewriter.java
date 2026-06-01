@@ -21,12 +21,12 @@ public class CodeRewriter extends Interpreter<CodeReferenceValue> implements Opc
   public InsnList rewritten = new InsnList();
 
   public CodeRewriter(ICRReferenceHandler referenceHandler) {
-    super(ASM8);
+    super(ASM9);
     this.referenceHandler = referenceHandler;
   }
 
   public CodeRewriter(ICRReferenceHandler referenceHandler, boolean isStatic, int localVariables, String descr) {
-    super(ASM8);
+    super(ASM9);
     this.referenceHandler = referenceHandler;
     Type.getArgumentTypes(descr);
     ArrayList<CodeReferenceValue> args = new ArrayList<>();
