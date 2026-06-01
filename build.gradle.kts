@@ -64,7 +64,6 @@ allprojects {
         configure<JavaPluginExtension> {
             sourceCompatibility = JavaVersion.VERSION_21
             targetCompatibility = JavaVersion.VERSION_21
-            addStringOption("source", "21")
         }
 
         if (!skipAutostyle) {
@@ -104,7 +103,7 @@ allprojects {
                     windowTitle = "Threadtear ${project.name} API"
                     header = "<b>Threadtear</b>"
                     addBooleanOption("Xdoclint:none", true)
-                    addStringOption("source", "8")
+                    addStringOption("source", "21")
                     if (JavaVersion.current().isJava9Compatible) {
                         addBooleanOption("html5", true)
                         links("https://docs.oracle.com/javase/9/docs/api/")
