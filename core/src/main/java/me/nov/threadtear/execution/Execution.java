@@ -160,9 +160,5 @@ public abstract class Execution implements Opcodes {
   }
 
   protected void allowReflection(boolean allow) {
-    SecurityManager sm = System.getSecurityManager();
-    if (sm != null) {
-      ((VMSecurityManager) sm).allowReflection(allow);
-    }
   }
 }
