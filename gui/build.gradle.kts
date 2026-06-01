@@ -66,6 +66,7 @@ val fatJar by tasks.registering(Copy::class) {
 }
 
 val runGui by tasks.registering(JavaExec::class) {
+    jvmArgs("-Dfile.encoding=UTF-8")
     group = "Development"
     description = "Builds and starts Threadtear"
     dependsOn(fatJar)
