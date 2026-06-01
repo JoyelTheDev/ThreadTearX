@@ -55,7 +55,8 @@ public class VM extends ClassLoader implements Opcodes {
   }
 
   private boolean isForbiddenName(String name) {
-    return name.startsWith(threadtearPkg) || name.matches(RT_REGEX);
+    return name.startsWith(threadtearPkg) 
+         || name.matches(RT_REGEX);
   }
 
   @Override
