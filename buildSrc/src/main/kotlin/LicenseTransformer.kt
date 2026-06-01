@@ -2,11 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.transformers.Transformer
 import com.github.jengelman.gradle.plugins.shadow.transformers.TransformerContext
 import org.gradle.api.file.FileTreeElement
 import org.gradle.api.tasks.Input
-import shadow.org.apache.tools.zip.ZipEntry
-import shadow.org.apache.tools.zip.ZipOutputStream
-import shadow.org.codehaus.plexus.util.IOUtil
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 class LicenseTransformer : Transformer {
 
@@ -17,12 +16,12 @@ class LicenseTransformer : Transformer {
 
     @Input
     lateinit var destinationPath: String
+    override fun getName(): String = "LicenseTransformer"
 
     override fun canTransformResource(element: FileTreeElement?): Boolean {
         return element?.let {
             val path = it.relativePath.pathString
-            include.contains(path) &&
-                    !exclude.contains(path)
+            include.contains(path) && !exclude.contains(path)
         } ?: false
     }
 
@@ -46,14 +45,13 @@ class LicenseTransformer : Transformer {
         }
     }
 
-    override fun modifyOutputStream(os: ZipOutputStream?, preserveFileTimestamps: Boolean) {
-        os?.run {
-            putNextEntry(ZipEntry(destinationPath).also {
-                it.time = TransformerContext.getEntryTimestamp(preserveFileTimestamps, it.time)
-            })
-            IOUtil.copy(ByteArrayInputStream(data.toByteArray()), this)
-            data.reset()
-        }
+    override fun modifyOutputStream(os: ZipOutputStream, preserveFileTimestamps: Boolean) {
+        val entry = ZipEntry(destinationPath)
+        entry.time = TransformerContext.getEntryTimestamp(preserveFileTimestamps, entry.time)
+        os.putNextEntry(entry)
+        ByteArrayInputStream(data.toByteArray()).copyTo(os)  // JDK InputStream.copyTo()
+        os.closeEntry()
+        data.reset()
     }
 
     fun include(vararg paths: String) {
