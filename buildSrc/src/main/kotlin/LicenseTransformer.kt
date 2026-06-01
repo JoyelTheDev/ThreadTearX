@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.transformers.Transformer
 import com.github.jengelman.gradle.plugins.shadow.transformers.TransformerContext
-import org.apache.tools.zip.ZipEntry         
-import org.apache.tools.zip.ZipOutputStream   
+import org.apache.tools.zip.ZipEntry          
+import org.apache.tools.zip.ZipOutputStream    
 import org.gradle.api.file.FileTreeElement
 import org.gradle.api.tasks.Input
 import java.io.ByteArrayInputStream
@@ -50,7 +50,7 @@ class LicenseTransformer : Transformer {
         val entry = ZipEntry(destinationPath)
         entry.time = TransformerContext.getEntryTimestamp(preserveFileTimestamps, entry.time)
         os.putNextEntry(entry)
-        ByteArrayInputStream(data.toByteArray()).copyTo(os)  
+        ByteArrayInputStream(data.toByteArray()).copyTo(os)
         os.closeEntry()
         data.reset()
     }
