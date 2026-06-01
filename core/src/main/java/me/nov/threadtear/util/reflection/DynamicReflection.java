@@ -41,10 +41,18 @@ public final class DynamicReflection implements Opcodes {
     return getTrustedLookup().revealDirect(handle);
   }
 
+  /**
+   * Returns a full-privilege Lookup for the DynamicReflection class itself.
+   * Use this when you need a trusted Lookup and have no specific target class
+   * (e.g. for {@link java.lang.invoke.MethodHandles.Lookup#revealDirect}).
+   */
+  public static MethodHandles.Lookup getTrustedLookup() {
+    return MethodHandles.lookup();
+  }
   public static MethodHandles.Lookup getTrustedLookup(Class<?> targetClass)
         throws IllegalAccessException {
     return MethodHandles.privateLookupIn(targetClass, MethodHandles.lookup());
-}
+  }
 
   public static AbstractInsnNode getInstructionFromHandleInfo(MethodHandleInfo direct) throws Exception {
     Class<?> declaringClass = direct.getDeclaringClass();
@@ -54,13 +62,9 @@ public final class DynamicReflection implements Opcodes {
     int op = bootstrapTagToOp(refKind);
     if (refKind <= H_PUTSTATIC) {
       if (refKind <= H_GETSTATIC) {
-        // method handle treats field retrieving as a
-        // method ()X
         return new FieldInsnNode(op, declaringClass.getName().replace('.', '/'), name,
                 methodType.toMethodDescriptorString().substring(2));
       } else {
-        // method handle treats field putting as a method
-        // (returning void) -> (X)V
         String mds = methodType.toMethodDescriptorString();
         return new FieldInsnNode(op, declaringClass.getName().replace('.', '/'), name,
                 mds.substring(1, mds.lastIndexOf(')')));
